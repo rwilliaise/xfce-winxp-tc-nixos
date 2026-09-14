@@ -9,10 +9,9 @@
 
   glib,
   gtk3,
-  sqlite,
+  libpulseaudio,
 
   comgtk,
-  registry,
 
   _defaultCmakeFlags,
 
@@ -20,7 +19,7 @@
 }:
 
 stdenv.mkDerivation {
-  pname = "wintc-regsvc";
+  pname = "wintc-sndapi";
   version = xfce-winxp-tc-repo.rev;
   src = xfce-winxp-tc-repo;
 
@@ -32,17 +31,14 @@ stdenv.mkDerivation {
   buildInputs = [
     glib
     gtk3
-    sqlite.dev
+    libpulseaudio
 
     comgtk
-    registry
   ];
 
-  preConfigure = "cd base/regsvc";
+  preConfigure = "cd shared/sndapi";
 
   cmakeFlags = _defaultCmakeFlags ++ [
     (lib.strings.cmakeFeature "WINTC_SKU" sku)
   ];
-
-  meta.mainProgram = "regsvc";
 }

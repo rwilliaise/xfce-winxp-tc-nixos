@@ -70,12 +70,16 @@
             registry = self.callPackage ./pkgs/shared/registry.nix {};
             shcommon = self.callPackage ./pkgs/shared/shcommon.nix {};
             shell = self.callPackage ./pkgs/shared/shell.nix {};
+            shelldpa = self.callPackage ./pkgs/shared/shelldpa.nix {};
             shellext = self.callPackage ./pkgs/shared/shellext.nix {};
             shlang = self.callPackage ./pkgs/shared/shlang.nix {};
+            sndapi = self.callPackage ./pkgs/shared/sndapi.nix {};
             winbrand = self.callPackage ./pkgs/shared/winbrand.nix {};
             
             # shell/
+            exitwin = self.callPackage ./pkgs/shell/exitwin.nix {};
             shell-run = self.callPackage ./pkgs/shell/run.nix {};
+            taskband = self.callPackage ./pkgs/shell/taskband.nix {};
 
             # sounds/
             sound-theme-xp = self.callPackage ./pkgs/sounds.nix {};

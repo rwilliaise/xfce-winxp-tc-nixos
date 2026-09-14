@@ -9,10 +9,9 @@
 
   glib,
   gtk3,
-  sqlite,
 
   comgtk,
-  registry,
+  msgina,
 
   _defaultCmakeFlags,
 
@@ -20,7 +19,7 @@
 }:
 
 stdenv.mkDerivation {
-  pname = "wintc-regsvc";
+  pname = "wintc-exitwin";
   version = xfce-winxp-tc-repo.rev;
   src = xfce-winxp-tc-repo;
 
@@ -32,17 +31,16 @@ stdenv.mkDerivation {
   buildInputs = [
     glib
     gtk3
-    sqlite.dev
 
     comgtk
-    registry
+    msgina
   ];
 
-  preConfigure = "cd base/regsvc";
+  preConfigure = "cd shell/exitwin";
 
   cmakeFlags = _defaultCmakeFlags ++ [
     (lib.strings.cmakeFeature "WINTC_SKU" sku)
   ];
 
-  meta.mainProgram = "regsvc";
+  meta.mainProgram = "exitwin";
 }
