@@ -7,12 +7,22 @@
   };
 
   outputs = inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-      ];
+    flake-parts.lib.mkFlake { inherit inputs; } ({ self, moduleWithSystem, ... }: {
+      flake.nixosModules.xfce-winxp-tc-nixos = moduleWithSystem (
+        perSystem: import ./module.nix perSystem
+      );
+
+      flake.nixosConfigurations.test = inputs.nixpkgs.lib.nixosSystem {
+        modules = [
+          self.nixosModules.xfce-winxp-tc
+          ./vms/xfce-winxp-tc-nixos.nix
+        ];
+      };
+
       systems = [ 
         "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" 
       ];
+
       perSystem = { pkgs, ... }: {
         packages = pkgs.lib.filterAttrs (_: pkgs.lib.isDerivation) (
           pkgs.lib.makeScope pkgs.newScope (self: {
@@ -63,6 +73,9 @@
             shellext = self.callPackage ./pkgs/shared/shellext.nix {};
             shlang = self.callPackage ./pkgs/shared/shlang.nix {};
             winbrand = self.callPackage ./pkgs/shared/winbrand.nix {};
+            
+            # shell/
+            shell-run = self.callPackage ./pkgs/shell/run.nix {};
 
             # sounds/
             sound-theme-xp = self.callPackage ./pkgs/sounds.nix {};
@@ -75,7 +88,5 @@
           })
         );
       };
-      flake = {
-      };
-    };
+    });
 }
