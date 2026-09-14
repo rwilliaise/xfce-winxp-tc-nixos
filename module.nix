@@ -1,8 +1,0 @@
-perSystem:
-{
-  config, lib, pkgs, ...
-}:
-
-{
-
-}

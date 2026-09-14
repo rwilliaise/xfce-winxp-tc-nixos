@@ -7,18 +7,7 @@
   };
 
   outputs = inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } ({ self, moduleWithSystem, ... }: {
-      flake.nixosModules.xfce-winxp-tc-nixos = moduleWithSystem (
-        perSystem: import ./module.nix perSystem
-      );
-
-      flake.nixosConfigurations.test = inputs.nixpkgs.lib.nixosSystem {
-        modules = [
-          self.nixosModules.xfce-winxp-tc
-          ./vms/xfce-winxp-tc-nixos.nix
-        ];
-      };
-
+    flake-parts.lib.mkFlake { inherit inputs; } ({ ... }: {
       systems = [ 
         "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" 
       ];
