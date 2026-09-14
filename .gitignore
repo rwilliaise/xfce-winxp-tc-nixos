@@ -1,0 +1,6 @@
+
+# `nix build` artifact
+result
+
+# `nixos-rebuild build-vm` artifact
+nixos.qcow2

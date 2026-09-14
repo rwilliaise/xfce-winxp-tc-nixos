@@ -1,0 +1,36 @@
+diff --git a/shared/shcommon/CMakeLists.txt b/shared/shcommon/CMakeLists.txt
+index c40dda2..e0f9bdd 100644
+--- a/shared/shcommon/CMakeLists.txt
++++ b/shared/shcommon/CMakeLists.txt
+@@ -24,6 +24,7 @@ include(../../packaging/cmake-inc/linking/CMakeLists.txt)
+ include(../../packaging/cmake-inc/packaging/CMakeLists.txt)
+ 
+ wintc_resolve_library(glib-2.0     GLIB)
++wintc_resolve_library(gio-unix-2.0 GIO)
+ wintc_resolve_library(gtk+-3.0     GTK3)
+ wintc_resolve_library(wintc-comgtk WINTC_COMGTK)
+ 
+@@ -59,6 +60,7 @@ target_include_directories(
+     libwintc-shcommon
+     SYSTEM
+     BEFORE
++    PRIVATE ${GIO_INCLUDE_DIRS}
+     PRIVATE ${GLIB_INCLUDE_DIRS}
+     PRIVATE ${GTK3_INCLUDE_DIRS}
+     PRIVATE ${WINTC_COMGTK_INCLUDE_DIRS}
+@@ -66,6 +68,7 @@ target_include_directories(
+ 
+ target_link_directories(
+     libwintc-shcommon
++    PRIVATE ${GIO_LIBRARY_DIRS}
+     PRIVATE ${GLIB_LIBRARY_DIRS}
+     PRIVATE ${GTK3_LIBRARY_DIRS}
+     PRIVATE ${WINTC_COMGTK_LIBRARY_DIRS}
+@@ -73,6 +76,7 @@ target_link_directories(
+ 
+ target_link_libraries(
+     libwintc-shcommon
++    PRIVATE ${GIO_LIBRARIES}
+     PRIVATE ${GLIB_LIBRARIES}
+     PRIVATE ${GTK3_LIBRARIES}
+     PRIVATE ${WINTC_COMGTK_LIBRARIES}
