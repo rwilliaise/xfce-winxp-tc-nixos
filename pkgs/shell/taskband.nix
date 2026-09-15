@@ -76,4 +76,6 @@ stdenv.mkDerivation {
   cmakeFlags = _defaultCmakeFlags ++ [
     (lib.strings.cmakeFeature "WINTC_SKU" sku)
   ];
+
+  meta.mainProgram = "wintc-taskband";
 }
