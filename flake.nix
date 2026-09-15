@@ -29,6 +29,8 @@
               hash = "sha256-QNiKUjJAum8zAfnn8xtW+yqspLlOWsCeEv1xMkbtKLI=";
             };
 
+            patchAssetDirHook = self.callPackage ./hooks/patchAssetDirHook.nix {};
+
             # base/
             bldtag = self.callPackage ./pkgs/base/bldtag.nix {};
             bootvid = self.callPackage ./pkgs/base/bootvid.nix {};

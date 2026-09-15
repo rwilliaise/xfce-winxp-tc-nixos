@@ -5,6 +5,7 @@
 
   autoPatchelfHook,
   cmake,
+  patchAssetDirHook,
   pkg-config,
   ninja,
 
@@ -41,6 +42,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [
     autoPatchelfHook
     cmake
+    patchAssetDirHook
     pkg-config
     ninja
   ];
